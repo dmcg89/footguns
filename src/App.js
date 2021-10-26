@@ -8,12 +8,17 @@ import {
   Link,
   Redirect,
 } from "react-router-dom";
-import { Auth } from "./Auth";
-import { Home } from "./Home";
-import { Profile } from "./Profile";
+import { Auth } from "./components/Auth";
+import { Home } from "./components/Home";
+import { Profile } from "./components/Profile";
 
 function App() {
   const { isAuthenticated, logout, user, isAuthUndefined } = useMoralis();
+
+  // console.log(user.get("objectId"));
+
+  // console.log(user.get("objectId"));
+  // const query = new Moralis.Query(Moralis.User);
 
   return (
     <Container>
@@ -31,6 +36,10 @@ function App() {
       <Heading textAlign="center " mb={6}>
         Welcome to FootGuns{" "}
         {user ? user.attributes.username : "authenticate please"}
+      </Heading>
+
+      <Heading textAlign="center " mb={6}>
+        Welcome to FootGuns {user ? user.attributes.objectId : "check"}
       </Heading>
 
       {isAuthenticated ? (
@@ -56,6 +65,7 @@ function App() {
       </Box>
     </Container>
   );
+  // look up exact keywords react router docs
 
   //   if (isAuthenticated) {
   //   return (
@@ -75,49 +85,5 @@ function App() {
   //     <Auth />
   //   </Container>
   // );
-
-  // look up exact keywords react docs
-  // return (
-  //   <Container>
-  // <Heading textAlign="center " mb={6}>
-  //   Welcome to FootGuns {user ? user.attributes.username : ""}
-  // </Heading>
-  //     {isAuthenticated ? (
-  //       <Switch>
-  //         <Route path="/" exact>
-  //           <Home />
-  //         </Route>
-  //         <Route path="/profile" exact>
-  //           <Profile />
-  //         </Route>
-  //       </Switch>
-  //     ) : (
-  //       <>
-  //         {isAuthUndefined && <Redirect to="/" />}
-  //         <Auth />
-  //       </>
-  //     )}
-  //   </Container>
-  // );
-
-  // if (isAuthenticated) {
-  //   return (
-  //     <Container>
-  //       <Heading textAlign="center " mb={6}>
-  //         Welcome to FootGuns {user.attributes.username}
-  //       </Heading>
-  //       <Button onClick={() => logout()}>Log Out</Button>
-  //     </Container>
-  //   );
-  // }
-  // return (
-  //   <Container>
-  //     <Heading textAlight="center " mb={6}>
-  //       Welcome to FootGuns
-  //     </Heading>
-  //     <Auth />
-  //   </Container>
-  // );
 }
-
 export default App;
